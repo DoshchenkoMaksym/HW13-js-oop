@@ -1,32 +1,30 @@
-let clock = document.querySelector('.clock');
+
 class Clock {
     constructor() {
+        this.clock = document.querySelector('.clock');
+        this.time = function () {
+            let data = new Date;
+            let hours = data.getHours();
+            let minutes = data.getMinutes();
+            let seconds = data.getSeconds();
+            if (this.clock.classList.contains('full')) {
+                this.clock.innerHTML = `${hours}:${minutes}:${seconds}`;
+            } else {
+                this.clock.innerHTML = `${hours}:${minutes}`
+            };
+        };
+        this.clock.addEventListener('click', () => { this.switchScreen() });
     }
     render() {
-        let data = new Date;
-        this.hours = data.getHours();
-        this.minutes = data.getMinutes();
-        this.seconds = data.getSeconds();
-        if (clock.classList.contains('full')){
-            clock.innerHTML = `${this.hours}:${this.minutes}:${this.seconds}`;
-        } else (
-            clock.innerHTML = `${this.hours}:${this.minutes}`
-        );
+        return this.time();
     };
-    fullScreen() {
-        clock.classList.add('full');
+    switchScreen() {
+        this.clock.classList.toggle('full');
     };
-    shortScreen() {
-        clock.classList.remove('full');
-    }
-
 };
 
-clock.addEventListener('click', () => {
-    clock.classList.toggle('full');
-})
 
 let newClock = new Clock();
 
-setInterval(newClock.render, 1000);
+setInterval(() => newClock.render(), 1000);
 

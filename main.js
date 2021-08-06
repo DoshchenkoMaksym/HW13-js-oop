@@ -2,7 +2,7 @@
 class Clock {
     constructor() {
         this.clock = document.querySelector('.clock');
-        this.time = function () {
+        this.render = function () {
             let data = new Date;
             let hours = data.getHours();
             let minutes = data.getMinutes();
@@ -15,9 +15,6 @@ class Clock {
         };
         this.clock.addEventListener('click', () => { this.switchScreen() });
     }
-    render() {
-        return this.time();
-    };
     switchScreen() {
         this.clock.classList.toggle('full');
     };
